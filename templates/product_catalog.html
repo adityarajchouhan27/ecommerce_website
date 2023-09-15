@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product Catalog</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h2>Product Catalog</h2>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Amount</th>
+            <th>Image</th>
+        </tr>
+        {% for product in products %}
+            <tr>
+                <td>{{ product.id }}</td>
+                <td>{{ product.name }}</td>
+                <td>{{ product.description }}</td>
+                <td>${{ product.amount }}</td>
+                <td><img src="{{ product.image_url }}" alt="{{ product.name }}" width="100"></td>
+            </tr>
+        {% endfor %}
+    </table>
+    <p><a href="/logout">Logout</a></p>
+</body>
+</html>
+
+<!-- Update the product_catalog.html template to include an "Add to Cart" button -->
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Amount</th>
+        <th>Image</th>
+        <th>Action</th>
+    </tr>
+    {% for product in products %}
+        <tr>
+            <td>{{ product.id }}</td>
+            <td>{{ product.name }}</td>
+            <td>{{ product.description }}</td>
+            <td>${{ product.amount }}</td>
+            <td><img src="{{ product.image_url }}" alt="{{ product.name }}" width="100"></td>
+            <td>
+                <a href="/add_to_cart/{{ product.id }}">Add to Cart</a>
+            </td>
+        </tr>
+    {% endfor %}
+</table>
